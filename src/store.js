@@ -6,16 +6,16 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     //State variables go here
     state: {
-        name: 'Foster Asante',
-        age: 21
+        my_name: 'Foster Asante',
+        my_age: 21
     },
     //Mutation methods go here
     mutations: {
         UPDATE_NAME(state, newName){
-            state.name = newName;
+            state.my_name = newName;
         },
         UPDATE_AGE(state, newAge){
-            state.age = newAge;
+            state.my_age = newAge;
         }
     },
     //Actions go here

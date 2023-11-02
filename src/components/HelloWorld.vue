@@ -20,6 +20,7 @@ import axios from "axios";
 
 export default {
   name: 'HelloWorld',
+  age: 0
   props: {
     msg: String
   },
@@ -34,6 +35,10 @@ export default {
   },
 
   methods: {
+    updateName(){
+
+    },
+    
     getAPI_data(){
       let url = this.baseURL;
       let endpoint = 'fact';
