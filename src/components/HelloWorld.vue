@@ -69,7 +69,7 @@ export default {
         .get(url + endpoint)
         .then((response) => {
           this.formData.name = response.data.fact;
-          this.$store.commit("increment", 5);
+          this.$store.commit("counterMod/increment", 5);
           // this.$store.state.counter = this.formData.name;
           console.log(response.data);
           console.log(this.myName);
