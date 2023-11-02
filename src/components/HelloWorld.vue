@@ -3,57 +3,83 @@
     <h1>{{ msg }}</h1>
   </div>
   <div>
+    <li>{{ myName }}</li>
+    <li>{{ myAge }}</li>
+  </div>
+  <div>
     <form @submit.prevent="getAPI_data" action="">
-      <div>
+      <div class="col-md-6">
+        <h1>{{ getCounter }}</h1>
+        <h1 class="text-success">{{ normalizeCounter }}</h1>
         <label for="name">Name</label>
-        <input type="text" v-model="formData.name" name="" id="">
+        <input
+          class="form-control mb-2"
+          type="text"
+          v-model="formData.name"
+          name=""
+          id=""
+        />
+        <button class="btn btn-primary w-100" type="submit">Submit</button>
       </div>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
+      <div></div>
     </form>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import {mapGetters} from "vuex";
+// import { mapState } from 'vuex'; // Import the mapping functions if needed
+// import store from '../store'; // Import your Vuex store
 
 export default {
-  name: 'HelloWorld',
-  age: 0
+  name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
   },
 
-  data(){
+  data() {
     return {
       formData: {
-        name: '',
+        name: "",
       },
-      baseURL: 'https://catfact.ninja/',
-    }
+      myName: "car",
+      myAge: 0,
+      baseURL: "https://catfact.ninja/",
+    };
+  },
+
+  computed: {
+    ...mapGetters('counterMod', ['getCounter', 'normalizeCounter'])
   },
 
   methods: {
-    updateName(){
-
+    currentValues() {
+      this.myName = "Fo";
     },
-    
-    getAPI_data(){
+    updateName() {
+      // this.$store.commit('UPDATE_NAME', this.formData.name);
+    },
+
+    getAPI_data() {
       let url = this.baseURL;
-      let endpoint = 'fact';
-      
-      axios.get(url + endpoint)
-      .then(response => {
-        this.formData.name = response.data.fact;
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      })
-    }
-  }
-}
+      let endpoint = "fact";
+
+      axios
+        .get(url + endpoint)
+        .then((response) => {
+          this.formData.name = response.data.fact;
+          this.$store.commit("increment", 5);
+          // this.$store.state.counter = this.formData.name;
+          console.log(response.data);
+          console.log(this.myName);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
