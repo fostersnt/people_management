@@ -1,8 +1,8 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import HomePage from '../views/HomePage';
-import ContactPage from '../views/ContactPage';
-import HelloWorld from '../HelloWorld';
-import NotFound from '../views/NotFound';
+// import HomePage from '../views/HomePage';
+// import ContactPage from '../views/ContactPage';
+// import HelloWorld from '../HelloWorld';
+// import NotFound from '../views/NotFound';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -10,22 +10,22 @@ const router = createRouter({
         {
             path: '/',
             name: 'Home',
-            component: HomePage
+            component: () => import('../views/HomePage')
         },
         {
             path: '/contact',
             name: 'Contact',
-            component: ContactPage
+            component: () => import('../views/ContactPage')
         },
         {
             path: '/counter',
             name: 'Counter',
-            component: HelloWorld
+            component: () => import('../HelloWorld.vue')
         },
         {
             path: '/:catchAll(.*)',
             name: 'NotFound',
-            component: NotFound
+            component: () => import('../views/NotFound')
         }
     ]
 })
