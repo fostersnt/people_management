@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import HomePage from '../views/HomePage';
 import ContactPage from '../views/ContactPage';
+import HelloWorld from '../HelloWorld';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -12,6 +13,10 @@ const router = createRouter({
         {
             path: '/contact',
             component: ContactPage
+        },
+        {
+            path: '/counter',
+            component: HelloWorld
         }
     ]
 })
